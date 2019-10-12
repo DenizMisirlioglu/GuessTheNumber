@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Guess the Number!</title>
+  <link rel="stylesheet" href="/static/style/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Delius+Unicase:400,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <!-- JS for Confetti effect -->
+  <script src="/static/js/index.min.js" charset="utf-8"></script>
+
+
+</head>
+<canvas id="confetti-canvas"></canvas>
+
+<body>
+  <!-- Contanier -->
+  <div id="app" class="container">
+
+    <!-- Top Banner -->
+    <div class="banner-container">
+      <img class="banner" src="/static/images/header_banner.png" alt="header-flag-banner">
+    </div>
+    <h1> Guess the number! </h1>
+    <h2> {{ winningMessage }} </h2>
+    <!-- App Contanier -->
+    <div class="app-container">
+
+      <div class="box" v-for="(guess, index) in playerGuesses">
+        <img src="/static/images/user-icon.png" class="user-icon">
+        <h2>Player {{ index + 1 }}</h2>
+        <span>
+          <p :class="{ 'error-box': true, 'show': guess.error }">{{ guess.error }}</p>
+        </span>
+        <form @submit="playerSubmit(index+1, $event)">
+          <input v-model="guess.value" type="number" name="number" placeholder="Enter a number between 0-100"
+            autocomplete="off" :disabled="guess.disabled" required>
+          <button type="submit" name="button" :disabled="guess.disabled">Guess!</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/main.js" charset="utf-8"></script>
+</body>
+
+</html>
