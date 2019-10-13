@@ -1,22 +1,5 @@
 let socket = null;
 
-/*function bora(param) {
-  console.log(param);
-}
-
-const bora = () => console.log();
-const bora2 = (num) => {
-  return 'player_' + num + '_message';
-}
-
-const arr = [1,2,3,4,5];
-
-for (let i = 0; i < arr.length; i++) {
-  callback(arr[i], i, arr);
-}
-
-arr.forEach(callback)*/
-
 const app = new Vue({
   el: '#app',
   data: {
@@ -52,7 +35,7 @@ const app = new Vue({
 
     socket.on('guess_correct', msg => {
       console.log('Guess Correct');
-      this.playerGuesses[this.chosenPlayer - 1].error = 'Yeyyyy!';
+      this.playerGuesses[this.chosenPlayer - 1].error = 'Bingo!';
       this.$forceUpdate();
       confettiAnimation();
     });
